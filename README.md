@@ -2,11 +2,11 @@
 Design and Implementation of RISC related processor using VERILOG HDL and XILINX SPARTAN-6 FPGA
 
 ## compileme.py
-simple asm compiler
+simple asm compiler (don't rely solely on this for error detection)
 
 usage:
 
-compileme.py <input file name(required)> <output file name(optional)>
+python compileme.py <input file name(required)> <output file name(optional)>
 
 ## processor_top_module.v
 top module of the processor. should include two block rams;
