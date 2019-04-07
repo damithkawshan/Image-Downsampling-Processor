@@ -25,7 +25,7 @@ module program_counter(
     output reg [11:0] addr_out
     );
 
-initial addr_out<=11'b00000000000;
+initial addr_out<=12'b00000000000;
 
 always @(posedge clk) begin
 	if (jmp)
