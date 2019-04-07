@@ -20,6 +20,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 module processor_top_module(
 	input clk_100m,
+	input uart_rx,
+	output uart_tx,
 	output [15:0] OUT
     );
 	 
@@ -80,11 +82,13 @@ mem_registers MEM_REGISTERS(
 	.from_mdr_to_mem(from_mdr_to_mem)
     );
 
+wire program_counter_no_inc;
 wire [11:0] jmp_addr;
 wire program_counter_jmp;
 wire [11:0] addr_out;				//to iram - address
 program_counter PROGRAM_COUNTER(
     .clk(clk),
+	 .no_inc(program_counter_no_inc),
     .jmp_addr(jmp_addr),
     .jmp(program_counter_jmp), //jump enable control signal 
     .addr_out(addr_out)
@@ -103,25 +107,6 @@ reg_bank REG_BANK(
 	 .data_out(reg_bank_data_out) 
 	 );
 
-wire uart_ready;
-wire uart_ready_clr;
-wire uart_wr_en;
-wire uart_enable;
-wire uart_tx_we;
-wire [15:0] uart_tx_to_bus;
-wire [15:0] uart_rx_to_bus;
-uart_dummy UART_DUMMY(
-	.clk(clk),
-	.bus(bus),
-	.uart_ready(uart_ready),
-	.uart_ready_clr(uart_ready_clr),
-	.uart_wr_en(uart_wr_en),
-	.uart_enable(uart_enable),
-	.uart_tx_we(uart_tx_we),
-	.uart_tx_to_bus(uart_tx_to_bus),
-	.uart_rx_to_bus(uart_rx_to_bus)	
-    );
-
 wire dram_we;
 dram DRAM(
   .clka(clk_100m), // input clka
@@ -136,20 +121,31 @@ iram IRAM (
   .clka(clk_100m), // input clka
   .wea(1'b0), // input [0 : 0] wea
   .addra(addr_out), // input [11 : 0] addra
-  .dina(), // input [15 : 0] dina
+  .dina(16'b0000000000000000), // input [15 : 0] dina
   .douta(iram_dout) // output [15 : 0] douta
 );
 
-
-//77uart UART(
-//77	.data_in(data_in),
-//77	.wr_en(en_1),
-//77	.clk_50m(clk),
-//77	.Tx(Tx),
-//77	.Tx_busy(Tx_busy_1),
-//77	.Rx(Rx),
-//77	.data_out(data_out)
-//77	);
+wire tx_busy;
+wire uart_ready;//control signal never used
+wire uart_ready_clr;
+wire uart_wr_en;
+wire uart_enable;
+wire uart_tx_we;
+wire [15:0] uart_tx_to_bus;
+wire [15:0] uart_rx_to_bus;
+uart UART(
+	.bus_to_uart_tx(bus), //input data
+	.clk_50m(clk),
+	.Rx(uart_rx),
+	.wr_en(uart_wr_en),
+	.ready_clr(uart_ready_clr),
+	.tx_we(uart_tx_we),
+	.Tx(uart_tx),
+	.ready(),
+	.Tx_busy(tx_busy),
+	.uart_tx_to_bus(uart_tx_to_bus),
+	.uart_rx_to_bus(uart_rx_to_bus)
+);
 
 
 wire [15:0] instruction;
@@ -168,7 +164,7 @@ instruction_decoder INSTRUCTION_DECODER(
 	//flags
 	.z_flag(z_flag),
 	.lrz_flag(lrz_flag),
-	
+	.tx_busy(tx_busy),
 	
 	
 	//instructiojn operand digestion
@@ -200,7 +196,8 @@ instruction_decoder INSTRUCTION_DECODER(
 	.uart_enable(uart_enable),
 	.uart_tx_we(uart_tx_we),
 	
-	.dram_we(dram_we)
+	.dram_we(dram_we),
+	.program_counter_no_inc(program_counter_no_inc)
     );
 	 
 

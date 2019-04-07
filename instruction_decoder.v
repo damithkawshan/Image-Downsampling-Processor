@@ -33,7 +33,7 @@ module instruction_decoder(
 	//flags
 	input z_flag,
 	input lrz_flag,
-	
+	input tx_busy,
 	
 	
 	//instructiojn operand digestion
@@ -65,7 +65,9 @@ module instruction_decoder(
 	output uart_enable,
 	output uart_tx_we,
 	
-	output dram_we
+	output dram_we,
+	
+	output program_counter_no_inc
     );
 
 
@@ -165,4 +167,6 @@ assign decoder_out =	(instruction[15:12]==4'b0001)?19'b1100000000000000000:
 							
 							(instruction[15:12]==4'b1101)?19'b0000000000000011000:
 							19'b0000000000000000000;
+							
+assign program_counter_no_inc=tx_busy;
 endmodule
