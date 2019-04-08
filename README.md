@@ -16,7 +16,7 @@ top module of the processor. should include two block rams;
 ## ISA
 INSTRUCTIONS
 
-1. NOP			NO OPERATION 							0000
+1. | NOP|			NO OPERATION 	|						0000
 2. ADD[R][CONST]		AC<-AC+([R]+[CONST])						0001
 3. SUB[R][CONST]		AC<-AC-([R]+[CONST])						0010
 4. MUL[R][CONST]		AC<-AC*([R]+[CONST])						0011
