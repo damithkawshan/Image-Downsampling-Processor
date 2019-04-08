@@ -34,11 +34,17 @@ top module of the processor. should include two block rams;
 
 ### DATA WIDTH:
 OPCODE ------> 4 BITS
+
 [R] ------> 5 BITS
+
 [CONST] ------> 7 BITS
+
 [N] ------> 4 BITS
+
 [M] ------> 12 BITS
+
 [INST] ------> 12 BITS
+
 [S], [D] ------> 5 BITS
 
 
