@@ -14,7 +14,8 @@ ops={
     'jmpz':0b1010,
     'jmpdec':0b1011,
     'move':0b1100,
-    'uartsend':0b1101
+    'uartsend':0b1101,
+    'uartread':0b1110
 }
 reg={
     'zr':0b00000,
@@ -134,7 +135,7 @@ for line in infile:
         if breakAll:
             break
 
-    elif(x[0]=='uartsend'):
+    elif(x[0] in ['uartsend','uartread']):
         command = command + '000000000000'
     else:
         #warn about errors

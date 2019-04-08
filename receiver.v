@@ -6,8 +6,8 @@ module receiver  (input wire Rx,
 						output reg [7:0] data
 						);
 initial begin
-	ready = 1'b0; // initialize ready = 0
-	data = 8'b00001111; // initialize data as 00000000
+	ready = 1'b1; // initialize ready = 0
+	data = 8'b0000_0000; // initialize data as 00000000
 end
 // Define the 4 states using 00,01,10 signals
 parameter RX_STATE_START	= 2'b00;

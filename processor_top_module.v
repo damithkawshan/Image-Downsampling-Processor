@@ -126,6 +126,7 @@ iram IRAM (
 );
 
 wire tx_busy;
+wire rx_ready;
 wire uart_ready;//control signal never used
 wire uart_ready_clr;
 wire uart_wr_en;
@@ -141,7 +142,7 @@ uart UART(
 	.ready_clr(uart_ready_clr),
 	.tx_we(uart_tx_we),
 	.Tx(uart_tx),
-	.ready(),
+	.ready(rx_ready),
 	.Tx_busy(tx_busy),
 	.uart_tx_to_bus(uart_tx_to_bus),
 	.uart_rx_to_bus(uart_rx_to_bus)
@@ -165,7 +166,7 @@ instruction_decoder INSTRUCTION_DECODER(
 	.z_flag(z_flag),
 	.lrz_flag(lrz_flag),
 	.tx_busy(tx_busy),
-	
+	.rx_ready(rx_ready),
 	
 	//instructiojn operand digestion
 	.bus(bus),
@@ -197,6 +198,7 @@ instruction_decoder INSTRUCTION_DECODER(
 	.uart_tx_we(uart_tx_we),
 	
 	.dram_we(dram_we),
+	
 	.program_counter_no_inc(program_counter_no_inc)
     );
 	 
@@ -208,9 +210,9 @@ always @(negedge clk) begin
 	INST_REG<=iram_dout;
 end
 
-reg [9:0] clkreg;
+reg [1:0] clkreg;
 initial clkreg=0;
 always @(posedge clk_100m) clkreg=clkreg+1;
-//assign clk=clkreg[9];
-assign clk=clk_100m;
+assign clk=clkreg[1];
+//assign clk=clk_100m;
 endmodule

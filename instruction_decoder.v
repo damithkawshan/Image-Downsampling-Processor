@@ -34,6 +34,7 @@ module instruction_decoder(
 	input z_flag,
 	input lrz_flag,
 	input tx_busy,
+	input rx_ready,
 	
 	
 	//instructiojn operand digestion
@@ -67,6 +68,7 @@ module instruction_decoder(
 	
 	output dram_we,
 	
+	//set outside the LUT
 	output program_counter_no_inc
     );
 
@@ -165,8 +167,9 @@ assign decoder_out =	(instruction[15:12]==4'b0001)?19'b1100000000000000000:
 							(instruction[15:12]==4'b1100 & reg_addr==5'b00110)?19'b0000000000010000010:
 							(instruction[15:12]==4'b1100 & reg_addr[4]==1'b1)?19'b0000000010000000010:
 							
-							(instruction[15:12]==4'b1101)?19'b0000000000000011000:
+							(instruction[15:12]==4'b1101)?19'b0000000000000010000:
+							(instruction[15:12]==4'b1110)?19'b0000000000000100000:
 							19'b0000000000000000000;
 							
-assign program_counter_no_inc=tx_busy;
+assign program_counter_no_inc=tx_busy | (~rx_ready);
 endmodule
