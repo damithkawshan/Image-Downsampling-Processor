@@ -20,6 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 module program_counter(
     input clk,
+	 input reset,
 	 input no_inc,
     input [11:0] jmp_addr,
     input jmp, //jump enable control signal
@@ -29,9 +30,13 @@ module program_counter(
 initial addr_out<=12'b000000000000;
 
 always @(posedge clk) begin
+	if (~reset) begin
 	if (jmp)
 		addr_out<=jmp_addr;
 	else 
 		addr_out<=addr_out+{11'b0000000000,~no_inc};
+	end
+	else
+		addr_out<=12'b000000000000;
 end
 endmodule
