@@ -30,7 +30,7 @@ argCount=len(sys.argv)
 infileName=''
 oufileName='compiled.txt'
 if argCount<2:
-    print("no input file\nusage:\npy_compile.py <input file name(required)> <output file name(optional)>")
+    print("no input file\nusage:\ncompileme.py <input file name(required)> <output file name(optional)>")
     exit()
 elif argCount==2:
     infileName = sys.argv[1]
@@ -125,8 +125,8 @@ for line in infile:
                 command = command + '01' + '{:04b}'.format(regNum)
             else:
                 # warn if not a valid registers
-                if not x[1] in reg.keys():
-                    print('Error:', lineNo, ':', x[1], 'is not a valid register')
+                if not x[i+1] in reg.keys():
+                    print('Error:', lineNo, ':', x[i+1], 'is not a valid register')
                     breakAll = True
                     break
 
