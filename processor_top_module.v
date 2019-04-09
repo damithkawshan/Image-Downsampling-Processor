@@ -20,6 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 module processor_top_module(
 	input clk_100m,
+	input reset,
 	input uart_rx,
 	output uart_tx,
 	output [15:0] OUT
@@ -88,7 +89,8 @@ wire program_counter_jmp;
 wire [11:0] addr_out;				//to iram - address
 program_counter PROGRAM_COUNTER(
     .clk(clk),
-	 .no_inc(program_counter_no_inc),
+    .reset(reset),
+    .no_inc(program_counter_no_inc),
     .jmp_addr(jmp_addr),
     .jmp(program_counter_jmp), //jump enable control signal 
     .addr_out(addr_out)
