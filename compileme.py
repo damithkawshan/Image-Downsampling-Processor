@@ -28,19 +28,20 @@ reg={
 }
 argCount=len(sys.argv)
 infileName=''
-oufileName='compiled.txt'
+oufileName='compiled.coe'
 if argCount<2:
     print("no input file\nusage:\ncompileme.py <input file name(required)> <output file name(optional)>")
     exit()
 elif argCount==2:
     infileName = sys.argv[1]
-    print('output file named as compiled.txt')
+    print('output file named as compiled.coe')
 else:
     infileName=sys.argv[1]
     oufileName=sys.argv[2]
 
 infile=open(infileName, 'r')
 oufile=open(oufileName,'w')
+oufile.write("memory_initialization_radix = 2;\nmemory_initialization_vector =\n")
 lineNo=0
 for line in infile:
     lineNo=lineNo+1
@@ -146,6 +147,8 @@ for line in infile:
     oufile.write(command+",\n")
 
 if not infile.readline():
-    print('compilation end')
+	print('compilation end')
+	oufile.write("0000000000000000;\n")
+	
 else:
     print('compilation interrupted')
