@@ -20,8 +20,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 module program_counter(
     input clk,
-	 input reset,
-	 input no_inc,
+    input reset,
+    input no_inc,
     input [11:0] jmp_addr,
     input jmp, //jump enable control signal
     output reg [11:0] addr_out
