@@ -8,6 +8,15 @@ usage:
 
 python compileme.py <input file name(required)> <output file name(optional)>
 
+## tryme.py
+simple asm simulator (don't rely solely on this for error detection)
+
+usage:
+
+python tryme.py <input file name(required)> <output file name(optional)>
+
+edit source file's "MEM" dictionary for initializing dram
+
 ## processor_top_module.v
 top module of the processor. should include two block rams;
 1. iram->16x4096 bits (12 bit address width)
