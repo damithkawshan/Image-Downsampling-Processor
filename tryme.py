@@ -64,6 +64,7 @@ MEM = {0:7}
 alllines=infile.readlines()
 while(lineNo<len(alllines)):
     line=alllines[lineNo]
+    thisLineNo=lineNo+1
     line = line.lower().strip()
     x = (re.split("\s+", line))
 
@@ -260,8 +261,8 @@ while(lineNo<len(alllines)):
 
 
 
-    print(lineNo, '.', x, REGS, GPR, MEM)
-    dd=str(lineNo)+'.\t'+line+'\n\t'+str(REGS)+' \n\tgpr:'+str(GPR)+' \n\tmem:'+str(MEM)+'\n\n'
+    print(thisLineNo, '.', x, REGS, GPR, MEM)
+    dd=str(thisLineNo)+'.\t'+line+'\n\t'+str(REGS)+' \n\tgpr:'+str(GPR)+' \n\tmem:'+str(MEM)+'\n\n'
     oufile.write(dd)
 
 if lineNo==len(alllines):
