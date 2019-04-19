@@ -212,9 +212,9 @@ always @(negedge clk) begin
 	INST_REG<=iram_dout;
 end
 
-reg [1:0] clkreg;
+reg [3:0] clkreg;
 initial clkreg=0;
 always @(posedge clk_100m) clkreg=clkreg+1;
-assign clk=clkreg[1];
+assign clk=clkreg[3]; //running @ 100MHz/16=6.25MHz
 //assign clk=clk_100m;
 endmodule
