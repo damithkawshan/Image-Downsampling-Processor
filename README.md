@@ -1,6 +1,83 @@
 # Image-Downsampling-Processor
 Design and Implementation of RISC related processor using VERILOG HDL and XILINX SPARTAN-6 FPGA
 
+
+## chill.py
+a little-higher level asm compiler (don't rely solely on this for error detection)
+
+usage:
+
+python chill.py <input file name(required)> <output file names(optional)>
+
+features:
+
+1. jump statements can be used with labels as destination
+2. immediate constants for add, sub, mul and div instructions will be resolved automatically
+3. immediate addressing for load and store instructions will be resolved automatically
+4. uartsend can be dirctly used to send a string of characters
+
+#### example:
+
+load 500
+
+:apple add r1 129
+
+jmpdec :apple
+
+uartsend :hi
+
+#### will compile into
+
+move mbr r15 //0.load 4096
+
+move ac r14
+
+move zr ac
+
+add zr 1
+
+shl 12
+
+move ac mbr
+
+load 0
+
+move r15 mbr
+
+move r14 ac //end
+
+add r1 2 //1.:apple add r1 256
+
+add zr 127
+
+add zr 127 //end
+
+jmpdec 9
+
+move ac r15 //3.uartsend :hi
+
+move zr ac
+
+add zr 104
+
+move ac uarttx
+
+uartsend
+
+nop
+
+move zr ac
+
+add zr 105
+
+move ac uarttx
+
+uartsend
+
+nop
+
+move r15 ac //end
+
 ## compileme.py
 simple asm compiler (don't rely solely on this for error detection)
 
