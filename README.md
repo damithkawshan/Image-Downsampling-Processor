@@ -9,7 +9,7 @@ usage:
 
 python chill.py <input file name(required)> <output file names(optional)>
 
-features:
+#### features:
 
 1. jump statements can be used with labels as destination
 2. immediate constants for add, sub, mul and div instructions will be resolved automatically
@@ -18,7 +18,7 @@ features:
 
 #### example:
 
-load 500
+load 4096
 
 :apple add r1 129
 
