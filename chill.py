@@ -234,7 +234,7 @@ try:
             if x[0]=='uartsend' and len(x)>1 and x[1][0]==':':
                 string = x[1]
                 command = 'move ac r15 //' + str(lineNo) + '.' + line + '\n'
-                for char in string:
+                for char in string[1:]:
                     asciival = ord(char)
                     command = command + 'move zr ac\nadd zr ' + str(asciival) + '\nmove ac uarttx\nuartsend\nnop\n'
                 command = command + 'move r15 ac //end\n'
