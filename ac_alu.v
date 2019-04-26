@@ -68,45 +68,45 @@ function [15:0] mux(
 		3'b011: begin mux=ac/(bus_to_ac+const_from_inst); end		//div
 		3'b100: begin															//shr
 					case (const_from_inst[3:0])
-						0:mux=bus_to_ac;
-						1:mux={1'b0,bus_to_ac[15:1]};
-						2:mux={2'b0,bus_to_ac[15:2]};
-						3:mux={3'b0,bus_to_ac[15:3]};
-						4:mux={4'b0,bus_to_ac[15:4]};
-						5:mux={5'b0,bus_to_ac[15:5]};
-						6:mux={6'b0,bus_to_ac[15:6]};
-						7:mux={7'b0,bus_to_ac[15:7]};
-						8:mux={8'b0,bus_to_ac[15:8]};
-						9:mux={9'b0,bus_to_ac[15:9]};
-						10:mux={10'b0,bus_to_ac[15:10]};
-						11:mux={11'b0,bus_to_ac[15:11]};
-						12:mux={12'b0,bus_to_ac[15:12]};
-						13:mux={13'b0,bus_to_ac[15:13]};
-						14:mux={14'b0,bus_to_ac[15:14]};
-						default:mux={15'b0,bus_to_ac[15:15]};
+						0:begin mux=ac; end
+						1:begin mux=ac>>1; end
+						2:begin mux=ac>>2; end
+						3:begin mux=ac>>3; end
+						4:begin mux=ac>>4; end
+						5:begin mux=ac>>5; end
+						6:begin mux=ac>>6; end
+						7:begin mux=ac>>7; end
+						8:begin mux=ac>>8; end
+						9:begin mux=ac>>9; end
+						10:begin mux=ac>>10; end
+						11:begin mux=ac>>11; end
+						12:begin mux=ac>>12; end
+						13:begin mux=ac>>13; end
+						14:begin mux=ac>>14; end
+						default:begin mux=ac>>15; end
 					endcase
 				  end
 		3'b101: begin															//shl
 					case (const_from_inst[3:0])
-						0:mux=bus_to_ac;
-						1:mux={bus_to_ac[14:0],1'b0};
-						2:mux={bus_to_ac[13:0],2'b0};
-						3:mux={bus_to_ac[12:0],3'b0};
-						4:mux={bus_to_ac[11:0],4'b0};
-						5:mux={bus_to_ac[10:0],5'b0};
-						6:mux={bus_to_ac[9:0],6'b0};
-						7:mux={bus_to_ac[8:0],7'b0};
-						8:mux={bus_to_ac[7:0],8'b0};
-						9:mux={bus_to_ac[6:0],9'b0};
-						10:mux={bus_to_ac[5:0],10'b0};
-						11:mux={bus_to_ac[4:0],11'b0};
-						12:mux={bus_to_ac[3:0],12'b0};
-						13:mux={bus_to_ac[2:0],13'b0};
-						14:mux={bus_to_ac[1:0],14'b0};
-						default:mux={bus_to_ac[0:0],15'b0};
+						0:begin mux=ac; end
+						1:begin mux=ac<<1; end
+						2:begin mux=ac<<2; end
+						3:begin mux=ac<<3; end
+						4:begin mux=ac<<4; end
+						5:begin mux=ac<<5; end
+						6:begin mux=ac<<6; end
+						7:begin mux=ac<<7; end
+						8:begin mux=ac<<8; end
+						9:begin mux=ac<<9; end
+						10:begin mux=ac<<10; end
+						11:begin mux=ac<<11; end
+						12:begin mux=ac<<12; end
+						13:begin mux=ac<<13; end
+						14:begin mux=ac<<14; end
+						default:begin mux=ac<<15; end
 					endcase
 				  end
-		default: mux=bus_to_ac;
+		default: mux=ac;
 	endcase
 endfunction
 
