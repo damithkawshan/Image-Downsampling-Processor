@@ -29,7 +29,7 @@ module loop_register(
 
 reg [15:0] lr;
 
-assign lrz_flag=lr? 1'b0:1'b1;
+assign lrz_flag=(lr==16'b0000_0000_0000_0001)? 1'b1:1'b0;
 assign lr_to_bus=lr;
 
 always @(posedge clk) begin
