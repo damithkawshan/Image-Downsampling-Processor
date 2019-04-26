@@ -1,0 +1,198 @@
+nop
+move zr mbr
+move zr mdr
+move zr ac
+add zr 127
+add zr 1
+move ac r1
+mul r1 0
+mul zr 2
+move ac lr
+move zr uarttx
+uartread
+nop
+move uartrx mdr
+store 0
+uartsend
+nop
+uartread
+nop
+move uartrx mdr
+store 1
+uartsend
+nop
+move mbr ac
+add zr 1
+move ac mbr
+jmpdec 11
+move zr ac
+add zr 64
+shl 2
+move ac lr
+move lr r1
+move zr ac
+add zr 127
+move ac lr
+move zr ac
+add zr 64
+shl 2
+sub r1 0
+shl 8
+move ac r2
+move zr ac
+add zr 127
+sub lr 0
+shl 1
+add r2 0
+shr 1
+move ac mbr
+move zr ac
+load 1
+add mdr 0
+shl 1
+load 0
+add mdr 0
+load 2
+add mdr 0
+shr 2
+move ac mdr
+store 1
+jmpdec 35
+move zr ac
+add r2 127
+add zr 127
+shr 1
+move ac mbr
+move zr ac
+load 1
+add mdr 0
+shl 1
+add mdr 0
+load 0
+add mdr 0
+shr 2
+move ac mdr
+store 1
+move r1 lr
+jmpdec 31
+move zr ac
+add zr 64
+shl 1
+move ac lr
+move lr r1
+move zr ac
+add zr 127
+move ac lr
+move zr ac
+add zr 2
+add zr 127
+sub r1 0
+shl 1
+sub zr 1
+move ac r2
+move zr ac
+add zr 127
+sub lr 0
+shl 9
+add r2 0
+shr 1
+move ac mbr
+move zr ac
+load 257
+add mdr 0
+shl 1
+load 1
+add mdr 0
+load 513
+add mdr 0
+shr 2
+move ac mdr
+store 257
+jmpdec 85
+move zr ac
+add zr 127
+shl 9
+add r2 0
+shr 1
+move ac mbr
+move zr ac
+load 257
+add mdr 0
+shl 1
+add mdr 0
+load 1
+add mdr 0
+shr 2
+move ac mdr
+store 257
+move r1 lr
+jmpdec 81
+move zr ac
+add zr 64
+shl 1
+move ac lr
+move lr r1
+move zr ac
+add zr 64
+move ac lr
+move zr ac
+add zr 64
+sub lr 0
+shl 1
+move ac r2
+move zr ac
+add zr 127
+add zr 2
+sub r1 0
+shl 8
+sub zr 127
+sub zr 1
+add r2 0
+move ac mbr
+load 1
+move mdr r3
+load 3
+move zr ac
+add zr 127
+add zr 1
+sub r1 0
+shl 6
+move ac r2
+move zr ac
+add zr 1
+shl 15
+add zr 64
+sub lr 0
+add r2 0
+move ac mbr
+store 2
+move r3 mdr
+store 1
+jmpdec 137
+move r1 lr
+jmpdec 133
+move zr ac
+add zr 1
+shl 15
+move ac mbr
+add zr 64
+move ac r1
+mul r1 0
+mul zr 2
+move ac lr
+load 1
+move mdr uarttx
+uartsend
+nop
+uartread
+nop
+load 2
+move mdr uarttx
+uartsend
+nop
+uartread
+nop
+move mbr ac
+add zr 1
+move ac mbr
+jmpdec 182
