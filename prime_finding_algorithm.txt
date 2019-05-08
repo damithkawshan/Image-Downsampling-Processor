@@ -1,0 +1,34 @@
+nop
+move zr ac
+move zr ac
+add zr 30
+move ac lr
+move lr r3 
+move zr r0
+move zr ac
+add zr 31
+sub lr 0
+move ac r1
+move r1 lr 
+move r1 ac
+div lr 0
+mul lr 0
+sub r1 0
+jmpz 18
+jmpdec 12
+move r0 ac
+add zr 1
+move ac r0
+jmpdec 12
+move r0 ac
+sub zr 1
+jmpz 28
+sub zr 1
+jmpz 28
+jump 31
+move r1 uarttx
+uartsend
+nop
+move r3 lr
+jmpdec 5
+nop
