@@ -139,13 +139,4 @@ OPCODE ------> 4 BITS
 7. UARTRX ------> UART RX REGISTER ------> 00100
 8. AC ------> ACCUMULATOR ------> 00101
 9. LR ------> LOOP REGISTER ------> 00110
-10. R1 ------> GP REG ------> 1XXXX (XXXX from 0000 to 1111)
-11. R2 ------> GP REG
-12. R3 ------> GP REG
-13. R4 ------> GP REG
-14. R5 ------> GP REG
-15. R6 ------> GP REG
-16. R7 ------> GP REG
-17. R8 ------> GP REG
-18. R9 ------> GP REG
-19. R10 ------> GP REG
+10. R0-R15 ------> GP REG ------> 1XXXX (XXXX from 0000 to 1111)
