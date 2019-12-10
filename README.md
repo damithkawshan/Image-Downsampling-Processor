@@ -7,14 +7,14 @@ a little-higher level asm compiler (don't rely solely on this for error detectio
 
 usage:
 
-python chill.py <input file name(required)> <output file names(optional)>
+python compileme.py <input file name(required)> <output file names(optional)>
 
 #### features:
 
 1. jump statements can be used with labels as destination
 2. immediate constants for add, sub, mul and div instructions will be resolved automatically
 3. immediate addressing for load and store instructions will be resolved automatically
-4. uartsend can be dirctly used to send a string of characters
+4. uartsend can be directly used to send a string of characters
 
 #### example:
 
